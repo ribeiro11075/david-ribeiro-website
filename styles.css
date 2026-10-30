@@ -1,0 +1,206 @@
+:root {
+  --bg: #f3efe6;
+  --fg: #161513;
+  --muted: #6d685e;
+  --tape: #ffc21a;
+  --ink: #161513;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151412;
+    --fg: #f3efe6;
+    --muted: #9a958b;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* caution tape */
+.tape {
+  position: fixed;
+  top: 18px;
+  left: -5%;
+  width: 110%;
+  height: 34px;
+  transform: rotate(-1.5deg);
+  background: repeating-linear-gradient(-45deg, var(--tape) 0 22px, var(--ink) 22px 44px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  overflow: hidden;
+  z-index: 3;
+  pointer-events: none;
+}
+.tape::after {
+  content: "";
+  position: absolute;
+  inset: 6px 0;
+  background: var(--tape);
+}
+.tape-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  white-space: nowrap;
+  font-family: "Archivo Black", sans-serif;
+  font-size: 13px;
+  letter-spacing: .12em;
+  color: var(--ink);
+  z-index: 1;
+  animation: scroll 30s linear infinite;
+}
+.tape-track span { padding-right: 2em; }
+@keyframes scroll { to { transform: translate(-50%, -50%); } }
+
+header {
+  position: relative;
+  z-index: 2;
+  padding: 88px 16px 0;
+  max-width: 640px;
+  margin: 0 auto;
+  pointer-events: none;
+  text-align: center;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  min-height: 1.4em;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #ff5a1f;
+  animation: blink 1.2s steps(2, jump-none) infinite;
+}
+@keyframes blink { 50% { opacity: .2; } }
+
+.headline {
+  margin-top: 14px;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(26px, 5vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -.01em;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.5;
+  color: var(--muted);
+}
+.hint kbd {
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.controls {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+button {
+  pointer-events: auto;
+  font: 600 13px "Inter", sans-serif;
+  color: var(--ink);
+  background: var(--tape);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--ink);
+  transition: transform .08s, box-shadow .08s;
+}
+button.alt { background: #fff; }
+@media (max-width: 520px) {
+  .controls { gap: 8px; }
+  button { padding: 6px 12px; font-size: 12px; }
+}
+button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+
+/* moon gravity is a switch, not a one-shot action */
+button.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+}
+.switch {
+  position: relative;
+  width: 28px;
+  height: 16px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: #fff;
+  transition: background .15s;
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: transform .15s;
+}
+button.toggle[aria-checked="true"] { background: var(--tape); }
+button.toggle[aria-checked="true"] .switch { background: var(--ink); }
+button.toggle[aria-checked="true"] .switch::after { background: var(--tape); transform: translateX(12px); }
+
+.integrity {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.integrity b { color: var(--fg); font-variant-numeric: tabular-nums; }
+
+body.disco {
+  --fg: #f3efe6;
+  --muted: #b9b3a8;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  touch-action: none;
+  cursor: crosshair;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tape-track, .dot { animation: none; }
+}

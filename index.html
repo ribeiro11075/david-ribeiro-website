@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>David Ribeiro</title>
+  <meta name="description" content="The personal site of David Ribeiro. Currently under construction. Feel free to make it worse.">
+  <meta property="og:title" content="David Ribeiro">
+  <meta property="og:description" content="Under construction. Feel free to make it worse.">
+  <meta property="og:url" content="https://david-ribeiro.com">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='52'%3E%F0%9F%9A%A7%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+        "cannon-es": "https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1 class="sr-only">David Ribeiro</h1>
+
+  <div class="tape" aria-hidden="true">
+    <div class="tape-track" id="tape"></div>
+  </div>
+
+  <header>
+    <div class="status"><span class="dot"></span><span id="status">Pouring the foundation…</span></div>
+    <p class="headline">This site is under construction.</p>
+    <p class="hint"><kbd>Click</kbd> to throw things at it. <kbd>Type</kbd> to drop letters. Or bring in the heavy machinery.</p>
+    <div class="controls">
+      <button id="wrecking" type="button">Wrecking ball</button>
+      <button id="dynamite" type="button">Dynamite</button>
+      <button id="tornado" type="button">Tornado</button>
+      <button id="quake" type="button">Earthquake</button>
+      <button id="ufo" type="button">UFO</button>
+      <button id="meteors" type="button">Meteor shower</button>
+      <button id="moon" type="button" role="switch" aria-checked="false" class="toggle"><span class="switch" aria-hidden="true"></span>Moon gravity</button>
+      <button id="rebuild" type="button" class="alt">Call the contractor</button>
+    </div>
+    <p class="integrity">Structural integrity: <b id="integrity">100%</b></p>
+  </header>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
